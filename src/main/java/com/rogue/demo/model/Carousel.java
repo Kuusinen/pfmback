@@ -1,5 +1,6 @@
 package com.rogue.demo.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -13,20 +14,20 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class CarouselImage {
+public class Carousel {
 
 	@Id
 	String uuid;
 
-	String imageUuid;
+	List<String> imageUuid;
 
 	String imageDescription;
 
-	public CarouselImage() {
+	public Carousel() {
 		uuid = UUID.randomUUID().toString();
 	}
 
-	public CarouselImage(final String uuid, final String imageUuid, final String imageDescription) {
+	public Carousel(final String uuid, final List<String> imageUuid, final String imageDescription) {
 		this.uuid = uuid;
 		this.imageUuid = imageUuid;
 		this.imageDescription = imageDescription;
