@@ -21,14 +21,17 @@ import com.rogue.pfm.model.Image;
 import com.rogue.pfm.model.ImageUploadResponse;
 import com.rogue.pfm.util.ImageUtil;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 
 @RestController
 @CrossOrigin()
 @RequestMapping("/image")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ImageRestController {
 
 	@Autowired
-	private ImageRepository imageRepository;
+	ImageRepository imageRepository;
 
 	@PostMapping("/upload")
 	public ResponseEntity<ImageUploadResponse> uplaodImage(@RequestParam("image") final MultipartFile file)
