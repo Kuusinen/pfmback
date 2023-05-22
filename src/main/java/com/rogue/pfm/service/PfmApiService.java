@@ -1,11 +1,11 @@
-package com.rogue.website.service;
+package com.rogue.pfm.service;
 
 import java.util.List;
 
-import com.rogue.website.model.Carousel;
-import com.rogue.website.model.Category;
-import com.rogue.website.model.Presentation;
-import com.rogue.website.model.Product;
+import com.rogue.pfm.model.Carousel;
+import com.rogue.pfm.model.Category;
+import com.rogue.pfm.model.Presentation;
+import com.rogue.pfm.model.Product;
 
 public interface PfmApiService {
 

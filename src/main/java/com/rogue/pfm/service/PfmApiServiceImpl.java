@@ -1,4 +1,4 @@
-package com.rogue.website.service;
+package com.rogue.pfm.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,14 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rogue.website.dao.CarouselRepository;
-import com.rogue.website.dao.CategoryRepository;
-import com.rogue.website.dao.PresentationDetailsRepository;
-import com.rogue.website.dao.ProductRepository;
-import com.rogue.website.model.Carousel;
-import com.rogue.website.model.Category;
-import com.rogue.website.model.Presentation;
-import com.rogue.website.model.Product;
+import com.rogue.pfm.dao.CarouselRepository;
+import com.rogue.pfm.dao.CategoryRepository;
+import com.rogue.pfm.dao.PresentationDetailsRepository;
+import com.rogue.pfm.dao.ProductRepository;
+import com.rogue.pfm.model.Carousel;
+import com.rogue.pfm.model.Category;
+import com.rogue.pfm.model.Presentation;
+import com.rogue.pfm.model.Product;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

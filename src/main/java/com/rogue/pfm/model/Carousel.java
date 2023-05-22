@@ -1,4 +1,4 @@
-package com.rogue.website.model;
+package com.rogue.pfm.model;
 
 import java.util.List;
 import java.util.UUID;

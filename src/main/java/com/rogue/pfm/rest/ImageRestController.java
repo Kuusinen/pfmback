@@ -1,4 +1,4 @@
-package com.rogue.website.rest;
+package com.rogue.pfm.rest;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.rogue.website.dao.ImageRepository;
-import com.rogue.website.model.Image;
-import com.rogue.website.model.ImageUploadResponse;
-import com.rogue.website.util.ImageUtil;
+import com.rogue.pfm.dao.ImageRepository;
+import com.rogue.pfm.model.Image;
+import com.rogue.pfm.model.ImageUploadResponse;
+import com.rogue.pfm.util.ImageUtil;
 
 
 @RestController

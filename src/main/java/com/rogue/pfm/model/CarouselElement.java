@@ -1,4 +1,4 @@
-package com.rogue.website.model;
+package com.rogue.pfm.model;
 
 import java.util.UUID;
 
@@ -13,19 +13,22 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class Presentation {
+public class CarouselElement {
 
 	@Id
 	String id;
 
-	String description;
+	String imageUuid;
 
-	public Presentation() {
+	String imageDescription;
+
+	public CarouselElement() {
 		this.id = UUID.randomUUID().toString();
 	}
 
-	public Presentation(final String id, final String description) {
+	public CarouselElement(final String id, final String imageUuid, final String imageDescription) {
 		this.id = id;
-		this.description = description;
+		this.imageUuid = imageUuid;
+		this.imageDescription = imageDescription;
 	}
 }

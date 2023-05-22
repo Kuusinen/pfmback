@@ -1,4 +1,4 @@
-package com.rogue.website.model;
+package com.rogue.pfm.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
