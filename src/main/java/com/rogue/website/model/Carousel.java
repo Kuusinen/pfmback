@@ -32,5 +32,4 @@ public class Carousel {
 		this.uuid = uuid;
 		this.carouselElements = carouselElements;
 	}
-
 }
