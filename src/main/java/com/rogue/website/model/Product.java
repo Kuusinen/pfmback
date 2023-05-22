@@ -1,4 +1,4 @@
-package com.rogue.demo.model;
+package com.rogue.website.model;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +24,7 @@ public class Product {
 
 	@Getter
 	@Setter
-	@OneToOne
+	@ManyToOne
 	Category category;
 
 	@Getter
@@ -43,7 +43,7 @@ public class Product {
 	@Setter
 	LocalDate date;
 
-	List<String> uuidsImage;
+	List<String> uuidsImages;
 
 	public Product() {
 		uuid = UUID.randomUUID().toString();
@@ -57,15 +57,15 @@ public class Product {
 		this.title = title;
 		this.body = body;
 		this.date = date;
-		this.uuidsImage = uuidsImage;
+		this.uuidsImages = uuidsImage;
 	}
 
 	public List<String> getUuidsImage() {
-		return Collections.unmodifiableList(uuidsImage);
+		return Collections.unmodifiableList(uuidsImages);
 	}
 
-	public void setUuidsImage(List<String> uuidsImage) {
-		this.uuidsImage = uuidsImage;
+	public void setUuidsImage(final List<String> uuidsImage) {
+		this.uuidsImages = uuidsImage;
 	}
 
 }

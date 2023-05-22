@@ -1,13 +1,9 @@
-package com.rogue.demo.dao;
-
-import java.util.List;
+package com.rogue.website.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.rogue.demo.model.Carousel;
+import com.rogue.website.model.Carousel;
 
 public interface CarouselRepository extends JpaRepository<Carousel, String> {
-
-	List<String> findImageUuid();
 
 }

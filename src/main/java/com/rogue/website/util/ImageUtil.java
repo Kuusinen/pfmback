@@ -1,4 +1,4 @@
-package com.rogue.demo.util;
+package com.rogue.website.util;
 
 import java.io.ByteArrayOutputStream;
 import java.util.zip.Deflater;

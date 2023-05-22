@@ -1,4 +1,4 @@
-package com.rogue.demo.model;
+package com.rogue.website.model;
 
 import java.util.UUID;
 

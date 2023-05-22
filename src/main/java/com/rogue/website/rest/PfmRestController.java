@@ -1,4 +1,4 @@
-package com.rogue.demo.rest;
+package com.rogue.website.rest;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

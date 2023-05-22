@@ -1,10 +1,10 @@
-package com.rogue.demo.dao;
+package com.rogue.website.dao;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.rogue.demo.model.Category;
+import com.rogue.website.model.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, String> {
 

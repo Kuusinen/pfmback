@@ -1,4 +1,4 @@
-package com.rogue.demo.rest;
+package com.rogue.website.rest;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.rogue.demo.dao.ImageRepository;
-import com.rogue.demo.model.Image;
-import com.rogue.demo.model.ImageUploadResponse;
-import com.rogue.demo.util.ImageUtil;
+import com.rogue.website.dao.ImageRepository;
+import com.rogue.website.model.Image;
+import com.rogue.website.model.ImageUploadResponse;
+import com.rogue.website.util.ImageUtil;
 
 
 @RestController
@@ -31,7 +31,7 @@ public class ImageRestController {
 	private ImageRepository imageRepository;
 
 	@PostMapping("/upload")
-	public ResponseEntity<ImageUploadResponse> uplaodImage(@RequestParam("image") MultipartFile file)
+	public ResponseEntity<ImageUploadResponse> uplaodImage(@RequestParam("image") final MultipartFile file)
 			throws IOException {
 
 		final Image image = new Image();
@@ -43,7 +43,7 @@ public class ImageRestController {
 	}
 
 	@GetMapping(path = { "/info/{name}" })
-	public Image getImageDetails(@PathVariable("name") String name) throws IOException {
+	public Image getImageDetails(@PathVariable("name") final String name) throws IOException {
 
 		final Optional<Image> dbImage = imageRepository.findByName(name);
 
@@ -54,7 +54,7 @@ public class ImageRestController {
 	}
 
 	@GetMapping(path = { "/{name}" })
-	public ResponseEntity<byte[]> getImage(@PathVariable("name") String name) throws IOException {
+	public ResponseEntity<byte[]> getImage(@PathVariable("name") final String name) throws IOException {
 
 		final Optional<Image> dbImage = imageRepository.findByName(name);
 

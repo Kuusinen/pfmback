@@ -1,10 +1,11 @@
-package com.rogue.demo.model;
+package com.rogue.website.model;
 
 import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,17 +20,17 @@ public class Carousel {
 	@Id
 	String uuid;
 
-	List<String> imageUuid;
-
-	String imageDescription;
+	@OneToMany
+	List<CarouselElement> carouselElements;
 
 	public Carousel() {
 		uuid = UUID.randomUUID().toString();
 	}
 
-	public Carousel(final String uuid, final List<String> imageUuid, final String imageDescription) {
+	public Carousel(final String uuid, final List<CarouselElement> carouselElements) {
+		super();
 		this.uuid = uuid;
-		this.imageUuid = imageUuid;
-		this.imageDescription = imageDescription;
+		this.carouselElements = carouselElements;
 	}
+
 }
