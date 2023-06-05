@@ -30,17 +30,14 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
 		
-		http.authorizeHttpRequests(
+		return http.csrf().disable().authorizeHttpRequests(
 				authz -> {
 					authz.requestMatchers("/api/**").hasAuthority("ADMIN");
 					authz.requestMatchers("/login").permitAll();
 					authz.anyRequest().denyAll();
-				}).csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-		http.addFilter(new JwtAuthentificationFilter(authenticationManager()));
-		http.addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-
-		return http.build();
+				}).addFilter(new JwtAuthentificationFilter(authenticationManager()))
+				.addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().build();
 	}
 
 	@Bean

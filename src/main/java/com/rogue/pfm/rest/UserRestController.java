@@ -12,7 +12,7 @@ import com.rogue.pfm.model.User;
 import com.rogue.pfm.service.UserService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/user")
 public class UserRestController {
 
