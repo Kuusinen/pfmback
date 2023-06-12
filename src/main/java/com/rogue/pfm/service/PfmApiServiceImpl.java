@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rogue.pfm.dao.CarouselRepository;
+import com.rogue.pfm.dao.CarouselElementRepository;
 import com.rogue.pfm.dao.CategoryRepository;
 import com.rogue.pfm.dao.PresentationDetailsRepository;
 import com.rogue.pfm.dao.ProductRepository;
-import com.rogue.pfm.model.Carousel;
+import com.rogue.pfm.model.CarouselElement;
 import com.rogue.pfm.model.Category;
 import com.rogue.pfm.model.Presentation;
 import com.rogue.pfm.model.Product;
@@ -23,7 +23,7 @@ import lombok.experimental.FieldDefaults;
 public class PfmApiServiceImpl implements PfmApiService {
 
 	@Autowired
-	CarouselRepository carouselRepository;
+	CarouselElementRepository carouselRepository;
 
 	@Autowired
 	ProductRepository productRepository;
@@ -33,12 +33,6 @@ public class PfmApiServiceImpl implements PfmApiService {
 
 	@Autowired
 	PresentationDetailsRepository detailsRepository;
-
-	@Override
-	public Carousel getCarouselDetails(final String id) {
-		final Optional<Carousel> carouselFind = carouselRepository.findById(id);
-		return carouselFind.orElseGet(Carousel::new);
-	}
 
 	@Override
 	public List<Product> getProductByCategory(final String categoryName) {
@@ -67,4 +61,18 @@ public class PfmApiServiceImpl implements PfmApiService {
 		return presentationDetailsFind.orElseGet(Presentation::new);
 	}
 
+	@Override
+	public List<CarouselElement> getAllCarouselElements() {
+		return carouselRepository.findAll();
+	}
+
+	@Override
+	public void addCarouselElement(final CarouselElement carouselElement) {
+		carouselRepository.save(carouselElement);
+	}
+
+	@Override
+	public void removeCarouselElement(final CarouselElement carouselElement) {
+		carouselRepository.delete(carouselElement);
+	}
 }

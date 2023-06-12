@@ -45,21 +45,10 @@ public class ImageRestController {
 				.body(new ImageUploadResponse("Image uploaded successfully: " + file.getOriginalFilename()));
 	}
 
-	@GetMapping(path = { "/info/{name}" })
-	public Image getImageDetails(@PathVariable("name") final String name) throws IOException {
+	@GetMapping(path = { "/{id}" })
+	public ResponseEntity<byte[]> getImage(@PathVariable("id") final String id) throws IOException {
 
-		final Optional<Image> dbImage = imageRepository.findByName(name);
-
-		final Image image = new Image();
-		image.setContent(ImageUtil.compressImage(dbImage.get().getContent()));
-		image.setName(dbImage.get().getName());
-		return image;
-	}
-
-	@GetMapping(path = { "/{name}" })
-	public ResponseEntity<byte[]> getImage(@PathVariable("name") final String name) throws IOException {
-
-		final Optional<Image> dbImage = imageRepository.findByName(name);
+		final Optional<Image> dbImage = imageRepository.findById(id);
 
 		return ResponseEntity.ok().contentType(MediaType.valueOf(dbImage.get().getContentType()))
 				.body(ImageUtil.decompressImage(dbImage.get().getContent()));
