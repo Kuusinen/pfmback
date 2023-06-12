@@ -33,6 +33,7 @@ public class SecurityConfig {
 		return http.csrf().disable().authorizeHttpRequests(
 				authz -> {
 					authz.requestMatchers("/api/**").hasAuthority("ADMIN");
+					authz.requestMatchers("/image/**").hasAuthority("ADMIN");
 					authz.requestMatchers("/login").permitAll();
 					authz.anyRequest().denyAll();
 				}).addFilter(new JwtAuthentificationFilter(authenticationManager()))

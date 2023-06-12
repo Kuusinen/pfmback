@@ -16,7 +16,8 @@ import lombok.experimental.FieldDefaults;
 public class Image {
 
 	@Id
-	String uuid;
+	@Getter
+	final String uuid;
 
 	@Getter
 	@Setter

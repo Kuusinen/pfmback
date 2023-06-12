@@ -41,8 +41,10 @@ public class ImageRestController {
 		image.setContent(ImageUtil.compressImage(file.getBytes()));
 		image.setName(file.getOriginalFilename());
 		image.setContentType(file.getContentType());
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(new ImageUploadResponse("Image uploaded successfully: " + file.getOriginalFilename()));
+
+		imageRepository.save(image);
+
+		return ResponseEntity.status(HttpStatus.OK).body(new ImageUploadResponse(image.getUuid()));
 	}
 
 	@GetMapping(path = { "/{id}" })

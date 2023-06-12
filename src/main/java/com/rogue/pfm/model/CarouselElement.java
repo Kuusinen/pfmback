@@ -25,10 +25,4 @@ public class CarouselElement {
 	public CarouselElement() {
 		this.id = UUID.randomUUID().toString();
 	}
-
-	public CarouselElement(final String id, final String imageUuid, final String imageDescription) {
-		this.id = id;
-		this.imageUuid = imageUuid;
-		this.imageDescription = imageDescription;
-	}
 }
