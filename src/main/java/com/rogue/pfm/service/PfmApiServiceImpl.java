@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.rogue.pfm.dao.CarouselElementRepository;
 import com.rogue.pfm.dao.CategoryRepository;
+import com.rogue.pfm.dao.ImageRepository;
 import com.rogue.pfm.dao.PresentationDetailsRepository;
 import com.rogue.pfm.dao.ProductRepository;
 import com.rogue.pfm.model.CarouselElement;
@@ -33,6 +34,9 @@ public class PfmApiServiceImpl implements PfmApiService {
 
 	@Autowired
 	PresentationDetailsRepository detailsRepository;
+
+	@Autowired
+	ImageRepository imageRepository;
 
 	@Override
 	public List<Product> getProductByCategory(final String categoryName) {
@@ -74,5 +78,6 @@ public class PfmApiServiceImpl implements PfmApiService {
 	@Override
 	public void removeCarouselElement(final CarouselElement carouselElement) {
 		carouselRepository.delete(carouselElement);
+		imageRepository.deleteById(carouselElement.getImageUuid());
 	}
 }
