@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
@@ -32,8 +33,11 @@ public class SecurityConfig {
 		
 		return http.csrf().disable().authorizeHttpRequests(
 				authz -> {
-					authz.requestMatchers("/api/**").hasAuthority("ADMIN");
-					authz.requestMatchers("/image/**").hasAuthority("ADMIN");
+					authz.requestMatchers(HttpMethod.POST, "/api/carousel").hasAuthority("ADMIN");
+					authz.requestMatchers(HttpMethod.DELETE, "/api/carousel/remove").hasAuthority("ADMIN");
+					authz.requestMatchers(HttpMethod.GET, "/api/carousel").permitAll();
+					authz.requestMatchers(HttpMethod.POST, "/image/upload").hasAuthority("ADMIN");
+					authz.requestMatchers(HttpMethod.GET, "/image/**").permitAll();
 					authz.requestMatchers("/login").permitAll();
 					authz.anyRequest().denyAll();
 				}).addFilter(new JwtAuthentificationFilter(authenticationManager()))
