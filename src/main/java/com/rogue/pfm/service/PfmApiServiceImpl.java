@@ -104,19 +104,29 @@ public class PfmApiServiceImpl implements PfmApiService {
 
 	@Override
 	public void removeCategory(final Category category) {
-		removeParentCategory(category);
+		final List<Category> allCategoryToRemove = new ArrayList<>();
 
-		removeSubCategory(category);
+		allCategoryToRemove.addAll(retrieveAllCategoryToRemove(category));
+
+		for (int i = allCategoryToRemove.size() - 1; i >= 0; i--) {
+			categoryRepository.delete(allCategoryToRemove.get(i));
+			imageRepository.deleteById(allCategoryToRemove.get(i).getImageUuid());
+		}
 	}
 
-	private void removeParentCategory(final Category category) {
-		categoryRepository.delete(category);
-		imageRepository.deleteById(category.getImageUuid());
-	}
+	private List<Category> retrieveAllCategoryToRemove(final Category category){
+		final List<Category> allCategoryToRemove = new ArrayList<>();
 
-	private void removeSubCategory(final Category category) {
-		getAllCategoryByCategory(category.getUuid()).forEach(cat -> {
-			removeParentCategory(cat);
-		});
+		allCategoryToRemove.add(category);
+
+		if (getAllCategoryByCategory(category.getUuid()).isEmpty()) {
+			return allCategoryToRemove;
+		} else {
+			for (final Category subCat : getAllCategoryByCategory(category.getUuid())) {
+				allCategoryToRemove.addAll(retrieveAllCategoryToRemove(subCat));
+			}
+		}
+
+		return allCategoryToRemove;
 	}
 }
