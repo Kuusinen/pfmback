@@ -1,5 +1,6 @@
 package com.rogue.pfm.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,19 +45,34 @@ public class PfmApiServiceImpl implements PfmApiService {
 		return productRepository.findByCategory(retrieveCategoryByName(categoryName));
 	}
 
+	private Category retrieveCategoryByName(final String categoryName) {
+		final Optional<Category> categoryFind = categoryRepository.findByName(categoryName);
+		return categoryFind.orElseGet(Category::new);
+	}
+
 	@Override
 	public List<Category> getAllParentCategory() {
 		return categoryRepository.findAllParentCategory();
 	}
 
 	@Override
-	public List<Category> getAllCategoryByCategory(final String categoryName) {
-		return categoryRepository.findByCategory(retrieveCategoryByName(categoryName));
+	public List<Category> getAllCategoryByCategory(final String categoryId) {
+		final List<Category> allSubCategory = new ArrayList<>();
+
+		categoryRepository.findById(categoryId)
+				.ifPresent(t -> allSubCategory.addAll(categoryRepository.findByCategory(t)));
+
+		return allSubCategory;
 	}
 
-	private Category retrieveCategoryByName(final String categoryName) {
-		final Optional<Category> categoryFind = categoryRepository.findByName(categoryName);
-		return categoryFind.orElseGet(Category::new);
+	@Override
+	public List<Product> getAllproductByCategory(final String categoryId) {
+		final List<Product> allProduct = new ArrayList<>();
+
+		categoryRepository.findById(categoryId)
+				.ifPresent(category -> allProduct.addAll(productRepository.findByCategory(category)));
+
+		return allProduct;
 	}
 
 	@Override
@@ -79,5 +95,28 @@ public class PfmApiServiceImpl implements PfmApiService {
 	public void removeCarouselElement(final CarouselElement carouselElement) {
 		carouselRepository.delete(carouselElement);
 		imageRepository.deleteById(carouselElement.getImageUuid());
+	}
+
+	@Override
+	public void addCategory(final Category category) {
+		categoryRepository.save(category);
+	}
+
+	@Override
+	public void removeCategory(final Category category) {
+		removeParentCategory(category);
+
+		removeSubCategory(category);
+	}
+
+	private void removeParentCategory(final Category category) {
+		categoryRepository.delete(category);
+		imageRepository.deleteById(category.getImageUuid());
+	}
+
+	private void removeSubCategory(final Category category) {
+		getAllCategoryByCategory(category.getUuid()).forEach(cat -> {
+			removeParentCategory(cat);
+		});
 	}
 }

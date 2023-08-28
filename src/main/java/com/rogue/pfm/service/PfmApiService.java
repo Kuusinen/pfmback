@@ -15,11 +15,17 @@ public interface PfmApiService {
 
 	List<Category> getAllParentCategory();
 
-	List<Category> getAllCategoryByCategory(String categoryName);
+	List<Category> getAllCategoryByCategory(String categoryId);
+
+	List<Product> getAllproductByCategory(String categoryId);
 
 	Presentation getPresentationDetails(String id);
 
 	void addCarouselElement(CarouselElement carouselElement);
 
 	void removeCarouselElement(CarouselElement carouselElement);
+
+	void addCategory(Category category);
+
+	void removeCategory(Category category);
 }

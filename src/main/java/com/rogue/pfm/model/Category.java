@@ -24,7 +24,7 @@ public class Category {
 	@OneToOne
 	Category category;
 
-	String imageUUid;
+	String imageUuid;
 
 	public Category() {
 		this.uuid = UUID.randomUUID().toString();
@@ -34,7 +34,7 @@ public class Category {
 		this.uuid = uuid;
 		this.name = name;
 		this.category = category;
-		this.imageUUid = imageUuid;
+		this.imageUuid = imageUuid;
 	}
 
 }
