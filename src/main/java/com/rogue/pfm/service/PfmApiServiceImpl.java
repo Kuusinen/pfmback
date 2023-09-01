@@ -40,7 +40,7 @@ public class PfmApiServiceImpl implements PfmApiService {
 	ImageRepository imageRepository;
 
 	@Override
-	public List<Product> getProductByCategory(final String categoryName) {
+	public List<Product> getProductsByCategory(final String categoryName) {
 
 		return productRepository.findByCategory(retrieveCategoryByName(categoryName));
 	}
@@ -104,6 +104,12 @@ public class PfmApiServiceImpl implements PfmApiService {
 
 	@Override
 	public void removeCategory(final Category category) {
+		final List<Category> allCategoryToRemove = removeParentandSubCategory(category);
+
+		removeAssociatedProductsToCategory(allCategoryToRemove);
+	}
+
+	private List<Category> removeParentandSubCategory(final Category category) {
 		final List<Category> allCategoryToRemove = new ArrayList<>();
 
 		allCategoryToRemove.addAll(retrieveAllCategoryToRemove(category));
@@ -112,6 +118,7 @@ public class PfmApiServiceImpl implements PfmApiService {
 			categoryRepository.delete(allCategoryToRemove.get(i));
 			imageRepository.deleteById(allCategoryToRemove.get(i).getImageUuid());
 		}
+		return allCategoryToRemove;
 	}
 
 	private List<Category> retrieveAllCategoryToRemove(final Category category){
@@ -128,5 +135,26 @@ public class PfmApiServiceImpl implements PfmApiService {
 		}
 
 		return allCategoryToRemove;
+	}
+
+	private void removeAssociatedProductsToCategory(final List<Category> allCategoryToRemove) {
+		allCategoryToRemove.forEach(cat -> getProductsByCategory(cat.getName()).forEach(productRepository::delete));
+	}
+
+	@Override
+	public Product getProductById(final String productId) {
+		final Optional<Product> productFind = productRepository.findById(productId);
+		return productFind.orElseGet(Product::new);
+	}
+
+	@Override
+	public Category getCategoryById(final String categoryId) {
+		final Optional<Category> productFind = categoryRepository.findById(categoryId);
+		return productFind.orElseGet(Category::new);
+	}
+
+	@Override
+	public void addProduct(final Product product) {
+		productRepository.save(product);
 	}
 }

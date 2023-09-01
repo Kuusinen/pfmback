@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rogue.pfm.model.CarouselElement;
 import com.rogue.pfm.model.Category;
+import com.rogue.pfm.model.Product;
 import com.rogue.pfm.service.PfmApiService;
 
 import lombok.AccessLevel;
@@ -54,8 +55,13 @@ public class PfmRestController {
 	}
 
 	@GetMapping(value = "/product/{categoryId}")
-	public List<Category> getProductByCategory(@PathVariable("categoryId") final String categoryId) {
-		return pfmApiService.getAllCategoryByCategory(categoryId);
+	public List<Product> getProductByCategory(@PathVariable("categoryId") final String categoryId) {
+		return pfmApiService.getAllproductByCategory(categoryId);
+	}
+
+	@GetMapping(value = "/product/id/{productId}")
+	public Product getProductById(@PathVariable("productId") final String productId) {
+		return pfmApiService.getProductById(productId);
 	}
 
 	@PostMapping(value = "/category")
@@ -66,5 +72,15 @@ public class PfmRestController {
 	@DeleteMapping(value = "/category/remove")
 	public void removeCategory(@RequestBody final Category category) {
 		pfmApiService.removeCategory(category);
+	}
+
+	@GetMapping(value = "/category/id/{categoryId}")
+	public Category getCategoryById(@PathVariable("categoryId") final String categoryId) {
+		return pfmApiService.getCategoryById(categoryId);
+	}
+
+	@PostMapping(value = "/product")
+	public void addProduct(@RequestBody final Product product) {
+		pfmApiService.addProduct(product);
 	}
 }

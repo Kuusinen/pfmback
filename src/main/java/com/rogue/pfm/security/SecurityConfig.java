@@ -36,10 +36,12 @@ public class SecurityConfig {
 					authz.requestMatchers(HttpMethod.GET, "/image/**").permitAll();
 					authz.requestMatchers(HttpMethod.GET, "/api/carousel").permitAll();
 					authz.requestMatchers(HttpMethod.GET, "/api/category").permitAll();
+					authz.requestMatchers(HttpMethod.GET, "/api/product/**").permitAll();
 					authz.requestMatchers(HttpMethod.GET, "/api/category/**").permitAll();
 					authz.requestMatchers(HttpMethod.POST, "/api/carousel").hasAuthority("ADMIN");
 					authz.requestMatchers(HttpMethod.DELETE, "/api/carousel/remove").hasAuthority("ADMIN");
 					authz.requestMatchers(HttpMethod.POST, "/api/category").hasAuthority("ADMIN");
+					authz.requestMatchers(HttpMethod.POST, "/api/product").hasAuthority("ADMIN");
 					authz.requestMatchers(HttpMethod.DELETE, "/api/category/remove").hasAuthority("ADMIN");
 					authz.requestMatchers(HttpMethod.POST, "/image/upload").hasAuthority("ADMIN");
 					authz.requestMatchers("/login").permitAll();

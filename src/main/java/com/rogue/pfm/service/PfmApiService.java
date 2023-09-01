@@ -11,7 +11,7 @@ public interface PfmApiService {
 
 	List<CarouselElement> getAllCarouselElements();
 
-	List<Product> getProductByCategory(String categoryName);
+	List<Product> getProductsByCategory(String categoryName);
 
 	List<Category> getAllParentCategory();
 
@@ -28,4 +28,10 @@ public interface PfmApiService {
 	void addCategory(Category category);
 
 	void removeCategory(Category category);
+
+	Product getProductById(String productId);
+
+	Category getCategoryById(String categoryId);
+
+	void addProduct(Product product);
 }
