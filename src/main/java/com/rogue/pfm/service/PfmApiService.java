@@ -33,5 +33,7 @@ public interface PfmApiService {
 
 	Category getCategoryById(String categoryId);
 
+	Category getCategoryByName(String categoryName);
+
 	void addProduct(Product product);
 }

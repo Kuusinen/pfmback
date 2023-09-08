@@ -3,6 +3,8 @@ package com.rogue.pfm.model;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -25,8 +27,10 @@ public class Product {
 
 	String title;
 
+	@Column(columnDefinition = "TEXT")
 	String body;
 
+	@ElementCollection
 	List<String> uuidsImages;
 
 	public Product() {

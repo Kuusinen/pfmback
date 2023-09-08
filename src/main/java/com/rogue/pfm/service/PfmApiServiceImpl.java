@@ -149,12 +149,18 @@ public class PfmApiServiceImpl implements PfmApiService {
 
 	@Override
 	public Category getCategoryById(final String categoryId) {
-		final Optional<Category> productFind = categoryRepository.findById(categoryId);
-		return productFind.orElseGet(Category::new);
+		final Optional<Category> categoryFind = categoryRepository.findById(categoryId);
+		return categoryFind.orElseGet(Category::new);
 	}
 
 	@Override
 	public void addProduct(final Product product) {
 		productRepository.save(product);
+	}
+
+	@Override
+	public Category getCategoryByName(final String categoryName) {
+		final Optional<Category> categoryFind = categoryRepository.findByName(categoryName);
+		return categoryFind.orElseGet(Category::new);
 	}
 }

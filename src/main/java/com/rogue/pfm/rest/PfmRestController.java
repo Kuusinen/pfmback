@@ -59,6 +59,11 @@ public class PfmRestController {
 		return pfmApiService.getAllproductByCategory(categoryId);
 	}
 
+	@GetMapping(value = "/category/name/{categoryName}")
+	public Category getCategoryByName(@PathVariable("categoryName") final String categoryName) {
+		return pfmApiService.getCategoryByName(categoryName);
+	}
+
 	@GetMapping(value = "/product/id/{productId}")
 	public Product getProductById(@PathVariable("productId") final String productId) {
 		return pfmApiService.getProductById(productId);
