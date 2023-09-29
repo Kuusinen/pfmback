@@ -14,6 +14,7 @@ import com.rogue.pfm.dao.PresentationDetailsRepository;
 import com.rogue.pfm.dao.ProductRepository;
 import com.rogue.pfm.model.CarouselElement;
 import com.rogue.pfm.model.Category;
+import com.rogue.pfm.model.Email;
 import com.rogue.pfm.model.Presentation;
 import com.rogue.pfm.model.Product;
 
@@ -38,6 +39,9 @@ public class PfmApiServiceImpl implements PfmApiService {
 
 	@Autowired
 	ImageRepository imageRepository;
+
+	@Autowired
+	EmailService emailService;
 
 	@Override
 	public List<Product> getProductsByCategory(final String categoryName) {
@@ -121,7 +125,7 @@ public class PfmApiServiceImpl implements PfmApiService {
 		return allCategoryToRemove;
 	}
 
-	private List<Category> retrieveAllCategoryToRemove(final Category category){
+	private List<Category> retrieveAllCategoryToRemove(final Category category) {
 		final List<Category> allCategoryToRemove = new ArrayList<>();
 
 		allCategoryToRemove.add(category);
@@ -163,4 +167,10 @@ public class PfmApiServiceImpl implements PfmApiService {
 		final Optional<Category> categoryFind = categoryRepository.findByName(categoryName);
 		return categoryFind.orElseGet(Category::new);
 	}
+
+	@Override
+	public void sendEmail(final Email email) {
+		emailService.sendEmail(email.getAdresses(), email.getBody(), "");
+	}
+
 }

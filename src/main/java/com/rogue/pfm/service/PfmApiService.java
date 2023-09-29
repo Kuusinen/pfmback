@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rogue.pfm.model.CarouselElement;
 import com.rogue.pfm.model.Category;
+import com.rogue.pfm.model.Email;
 import com.rogue.pfm.model.Presentation;
 import com.rogue.pfm.model.Product;
 
@@ -36,4 +37,6 @@ public interface PfmApiService {
 	Category getCategoryByName(String categoryName);
 
 	void addProduct(Product product);
+
+	void sendEmail(Email email);
 }

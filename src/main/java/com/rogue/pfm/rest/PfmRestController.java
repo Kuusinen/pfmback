@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rogue.pfm.model.CarouselElement;
 import com.rogue.pfm.model.Category;
+import com.rogue.pfm.model.Email;
 import com.rogue.pfm.model.Product;
 import com.rogue.pfm.service.PfmApiService;
 
@@ -28,7 +29,7 @@ public class PfmRestController {
 
 	@Autowired
 	PfmApiService pfmApiService;
-	
+
 	@GetMapping(value = "/carousel")
 	public List<CarouselElement> getAllCarouselelement() {
 		return pfmApiService.getAllCarouselElements();
@@ -87,5 +88,10 @@ public class PfmRestController {
 	@PostMapping(value = "/product")
 	public void addProduct(@RequestBody final Product product) {
 		pfmApiService.addProduct(product);
+	}
+
+	@PostMapping(value = "/email")
+	public void sendEmail(@RequestBody final Email email) {
+		pfmApiService.sendEmail(email);
 	}
 }
