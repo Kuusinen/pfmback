@@ -1,4 +1,4 @@
-package com.rogue.demo;
+package com.rogue.pfm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
