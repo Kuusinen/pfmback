@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.rogue</groupId>
 	<artifactId>pfmback</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>pfmback</name>
 	<description>Back-end Pfm&apos;s project</description>
 	<properties>

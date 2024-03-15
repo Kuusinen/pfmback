@@ -22,7 +22,7 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("petit-fil-modele.fr.nf")
 @RequestMapping("/api")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PfmRestController {
