@@ -25,7 +25,7 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("petit-fil-modele.fr.nf")
 @RequestMapping("/image")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ImageRestController {
