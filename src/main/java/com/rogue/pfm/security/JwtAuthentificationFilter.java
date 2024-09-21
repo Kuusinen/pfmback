@@ -44,8 +44,6 @@ public class JwtAuthentificationFilter extends UsernamePasswordAuthenticationFil
 	public Authentication attemptAuthentication(final HttpServletRequest request, final HttpServletResponse response)
 			throws AuthenticationException {
 
-		response.addHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-
 		User user = null;
 
 		try {
