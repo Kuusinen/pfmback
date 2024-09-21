@@ -44,6 +44,8 @@ public class JwtAuthentificationFilter extends UsernamePasswordAuthenticationFil
 	public Authentication attemptAuthentication(final HttpServletRequest request, final HttpServletResponse response)
 			throws AuthenticationException {
 
+		response.addHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+
 		User user = null;
 
 		try {
@@ -61,7 +63,8 @@ public class JwtAuthentificationFilter extends UsernamePasswordAuthenticationFil
 	}
 
 	@Override
-	protected void successfulAuthentication(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain,
+	protected void successfulAuthentication(final HttpServletRequest request, final HttpServletResponse response,
+			final FilterChain chain,
 			final Authentication authResult) throws IOException, ServletException {
 		final org.springframework.security.core.userdetails.User userSpring = (org.springframework.security.core.userdetails.User) authResult
 				.getPrincipal();
@@ -69,7 +72,7 @@ public class JwtAuthentificationFilter extends UsernamePasswordAuthenticationFil
 		final List<GrantedAuthority> authorities = new ArrayList<>();
 
 		authorities.addAll(userSpring.getAuthorities());
-		
+
 		final String jwtToken = JWT.create()
 				.withSubject(userSpring.getUsername())
 				.withArrayClaim("roles", userSpring.getAuthorities().stream()

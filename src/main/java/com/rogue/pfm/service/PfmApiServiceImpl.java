@@ -97,7 +97,7 @@ public class PfmApiServiceImpl implements PfmApiService {
 
 	@Override
 	public void removeCarouselElement(final CarouselElement carouselElement) {
-		carouselRepository.delete(carouselElement);
+		carouselRepository.deleteById(carouselElement.getId());
 		imageRepository.deleteById(carouselElement.getImageUuid());
 	}
 
