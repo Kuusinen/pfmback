@@ -27,12 +27,11 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 			final FilterChain filterChain)
 			throws ServletException, IOException {
 
-		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
 		response.addHeader("Access-Control-Allow-Headers",
 				"Access-Control-Allow-Headers,Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
 		response.addHeader("Access-Control-Expose-Headers",
-				"Authorization, Access-Control-Allow-Origin,Access-Control-Allow-Credentials ");
+				"Authorization, Access-Control-Allow-Origin,Access-Control-Allow-Credentials, Access-Control-Allow-Origin");
 
 		if (request.getMethod().equals("OPTIONS")) {
 			response.setStatus(HttpServletResponse.SC_OK);
