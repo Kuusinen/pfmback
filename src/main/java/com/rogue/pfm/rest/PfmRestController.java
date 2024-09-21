@@ -96,7 +96,7 @@ public class PfmRestController {
 		pfmApiService.sendEmail(email);
 	}
 
-	@PostMapping("/login")
+	@PostMapping(value = "/login")
 	public void loggedIn(final User user) {
 	}
 }

@@ -46,7 +46,7 @@ public class SecurityConfig {
 			authz.requestMatchers(HttpMethod.POST, "/api/product").hasAuthority("ADMIN");
 			authz.requestMatchers(HttpMethod.DELETE, "/api/category/remove").hasAuthority("ADMIN");
 			authz.requestMatchers(HttpMethod.POST, "/image/upload").hasAuthority("ADMIN");
-			authz.requestMatchers("api/login").permitAll();
+			authz.requestMatchers(HttpMethod.POST, "api/login").permitAll();
 			authz.anyRequest().denyAll();
 		}).addFilter(customFilter)
 				.addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
