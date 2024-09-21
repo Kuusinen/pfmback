@@ -30,6 +30,9 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
 
+		final JwtAuthentificationFilter customFilter = new JwtAuthentificationFilter(authenticationManager());
+		customFilter.setFilterProcessesUrl("/api/login");
+
 		return http.csrf().disable().authorizeHttpRequests(authz -> {
 			authz.requestMatchers(HttpMethod.GET, "/image/**").permitAll();
 			authz.requestMatchers(HttpMethod.GET, "/api/carousel").permitAll();
@@ -43,9 +46,9 @@ public class SecurityConfig {
 			authz.requestMatchers(HttpMethod.POST, "/api/product").hasAuthority("ADMIN");
 			authz.requestMatchers(HttpMethod.DELETE, "/api/category/remove").hasAuthority("ADMIN");
 			authz.requestMatchers(HttpMethod.POST, "/image/upload").hasAuthority("ADMIN");
-			authz.requestMatchers("/login").permitAll();
+			authz.requestMatchers("api/login").permitAll();
 			authz.anyRequest().denyAll();
-		}).addFilter(new JwtAuthentificationFilter(authenticationManager()))
+		}).addFilter(customFilter)
 				.addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().build();
 	}

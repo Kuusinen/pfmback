@@ -16,13 +16,14 @@ import com.rogue.pfm.model.CarouselElement;
 import com.rogue.pfm.model.Category;
 import com.rogue.pfm.model.Email;
 import com.rogue.pfm.model.Product;
+import com.rogue.pfm.model.User;
 import com.rogue.pfm.service.PfmApiService;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
 @RestController
-@CrossOrigin("petit-fil-modele.fr.nf")
+@CrossOrigin({ "petit-fil-modele.fr.nf", "www.petit-fil-modele.fr.nf" })
 @RequestMapping("/api")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PfmRestController {
@@ -93,5 +94,9 @@ public class PfmRestController {
 	@PostMapping(value = "/email")
 	public void sendEmail(@RequestBody final Email email) {
 		pfmApiService.sendEmail(email);
+	}
+
+	@PostMapping("/login")
+	public void loggedIn(final User user) {
 	}
 }
